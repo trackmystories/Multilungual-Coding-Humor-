@@ -1,0 +1,45 @@
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state= {date: new Date()};
+  }
+
+  componentDidMount(){
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+  componentWillUnmount(){
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render(){
+    return(
+      <div>
+      <h1><strong>A little multilingual humor for Coders </strong></h1>
+      <h2> שלום, New Dunya, das sehr gute to be alive @ a time of inovation!</h2>
+      <h3> Maitenant le temps est {this.state.date.toLocaleTimeString('fr-EG')}.</h3>
+      <h4> الان هو الوقت المناسب {this.state.date.toLocaleTimeString('ar-EG')}.</h4>
+      <p> Mais, si vous prefere AM ou PM, Voila {this.state.date.toLocaleTimeString()}.</p>
+      <p> "A.a. little humour, Par Track My Stories </p>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+
+//componentDidMount, componentWillUnmount : "lifecycle methods"
+//color based debuging an issue i have faced in debugging is with CAPs hence the "A.a." Get it :p
+// ref document in ReactDOM color matches this."state.date"
+//https://reactjs.org/docs/state-and-lifecycle.html
